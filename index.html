@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>עיר ללא נגישות</title>
+<link rel="icon" href="icon.png" type="image/png">
+<link rel="icon" href="icon.png" type="image/png">
+    <style>
+.unselectable {
+      -webkit-user-select: none; /* Safari */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* IE10+/Edge */
+      user-select: none; /* Standard */
+    }
+/* Global styles */
+body {
+    font-family: Assistant, sans-serif;
+    background-color: #ffffff;
+    direction: rtl; /* Right-to-left text alignment */
+}
+
+/* Header styles */
+#header {
+    background-color: #ffffff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#logo {
+    font-weight: bold;
+    margin-left: auto; /* Push the logo to the right */
+    display: flex;
+    align-items: center;
+}
+
+#logo img {
+    max-width: 100%;
+    height: auto;
+    margin-right: 5px;
+}
+
+#logo .logo-images {
+    display: flex;
+    align-items: center;
+}
+
+#logo .logo-images img {
+    max-width: 100%;
+    height: auto;
+    margin-right:5px;
+}
+
+#logo .logo-text {
+    margin-right: 5px;
+}
+
+#main-menu {
+    display: flex;
+    justify-content: flex-end; /* right align the menu links */
+    align-items:center; /* Vertically right align the menu links */
+}
+
+.menu-link {
+    color: #070F44;
+    text-decoration: none;
+    padding:5px;
+    position: relative;
+    font-weight: bold;
+    font-size:25px;
+    transition: color 0.2s ease-in-out; /* Added transition property */
+display: flex;
+    justify-content: flex-end; /* Align the menu links to the right */
+    align-items: right; /* Vertically center align the menu links */
+    
+}
+
+.menu-link::after {
+    content: "\25BC"; /* Down arrow */
+    display: inline-block;
+    margin-left: 5px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+color: #95D7F5;  
+}
+
+.menu-link:hover {
+    color: #97DBF8; /* Updated color on hover */
+}
+
+.menu-link:hover::after {
+    opacity: 1;
+}
+
+/* Dropdown menu styles */
+.menu-dropdown {
+    position: relative;
+}
+
+.menu-dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+.menu-dropdown:hover .menu-dropdown-content {
+    display: block;
+}
+
+.menu-dropdown-content a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    color: #070F44;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.2s ease-in-out; /* Added transition property */
+}
+
+.menu-dropdown-content a:hover {
+    color: #97DBF8; /* Updated color on hover */
+}
+
+.menu-dropdown:hover .menu-dropdown-content {
+    display: block;
+}
+
+.menu-dropdown-content a {
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+    color: #070F44;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Search bar styles */
+#search-bar {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    justify-content: flex-start; /* Align on the left */
+}
+
+}
+#search-input {
+    padding: 8px;
+    border: 1px solid #333333;
+    border-radius: 4px;
+    margin-right: 10px;
+    width: 200px;
+}
+
+
+/* Language menu styles */
+#language-menu {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.language-option {
+    padding: 6px 10px;
+    background-color: #333333;
+    color: #ffffff;
+    border-radius: 4px;
+    margin-right: 5px;
+    text-decoration: none;
+}
+
+/* Secondary menu styles */
+#secondary-menu {
+    background-color: #070F44;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+/* gallery link*/
+#gallery{
+     color: #ffffff;
+    text-decoration: none;
+    padding: 10px;
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.2s ease-in-out; /* Added transition property */
+}
+
+.secondary-menu-link {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px;
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.2s ease-in-out; /* Added transition property */
+}
+
+.secondary-menu-link:hover {
+    background-color: #ffffff;
+    color: #070F44;
+}
+
+/* Welcome section styles */
+#welcome-section {
+    background-color: none(255, 255, 255, 0.7);
+    padding: 20px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#welcome-text {
+    flex: 1;
+color: #FFFFFF;
+font-size: 21px;
+ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#welcome-title {
+    font-size:35px;
+    margin-bottom: 10px;
+}
+
+#read-more-button {
+    text-decoration: none;
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#read-more-button:hover {
+    background-color: #ffffff;
+    color: #070F44;
+}
+
+/* Read more overlay styles */
+#read-more-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#read-more-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+   background-image: url(carmelitstairs.gif);
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    border-radius: 4px;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+color: #FFFFFF;
+ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #333333;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Background image */
+body:before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-image: url("background-image.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center bottom;
+    opacity: 0.7;
+}
+/* Contact Form Styles */
+        #contact-form {
+            /* Contact form specific styles */
+            background-color: #ffffff;
+            padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #contact-form h2 {
+            font-size: 20px;
+font-family:assistant;
+            margin-bottom: 10px;
+color: #070F44;
+        }
+
+        #contact-form .form-group {
+            margin-bottom: 10px;
+        }
+
+        #contact-form label {
+            display: block;
+            font-weight: bold;
+ color: #070F44;
+        }
+
+        #contact-form input[type="text"],
+        #contact-form input[type="email"],
+        #contact-form textarea {
+            width:200px;
+height: 10px;
+font-family:assistant;
+
+            padding: 8px;
+            border: 1px solid #333333;
+            border-radius: 4px;
+        }
+
+        #contact-form button[type="submit"] {
+            padding: 8px 16px;
+            background-color: #070F44;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Sign-in Form Styles */
+        #signin-form {
+            /* Sign-in form specific styles */
+            background-color: #ffffff;
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #signin-form h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        #signin-form .form-group {
+            margin-bottom: 10px;
+        }
+
+        #signin-form label {
+            display: block;
+            font-weight: bold;
+color: #333333;
+        }
+
+        #signin-form input[type="text"],
+        #signin-form input[type="password"] {
+            width:200px;
+height: 50px;
+            padding: 8px;
+            border: 1px solid #333333;
+            border-radius: 4px;
+        }
+
+        #signin-form button[type="submit"] {
+            padding: 8px 16px;
+            background-color: #070F44;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+    </style>
+<script>
+        function signIn() {
+            window.location.href = "signin.html";
+        }
+    </script>
+</head>
+<body>
+    <header id="header">
+<div id="logo">
+        <a href="index.html"> <!-- Add anchor tag with href attribute -->
+            
+            <div class="logo-images">
+                <img class="unselectable" src="logo-image1.png" alt="Image 1">
+                <img class="unselectable" src="logo-image2.png" alt="Image 2">
+            </div>
+            
+        </a>
+    </div>
+ 
+     
+        <nav id="main-menu">
+            <div class="menu-dropdown">
+                <a class="menu-link" href="#">שירותי העירייה</a>
+                <div class="menu-dropdown-content">
+                    <a href="error.html">שירותים נבחרים</a>
+                    <a href="error.html">חינוך</a>
+                    <a href="error.html">ארנונה, מים ושירותים מקוונים</a>
+                    <a href="error.html">חניה, תחבורה ואכיפה</a>
+                    <a href="error.html">הנדסה, תכנון ובניה</a>
+                </div>
+            </div>
+            <div class="menu-dropdown">
+                <a class="menu-link" href="#">תרבות, ספורט וקהילה</a>
+                <div class="menu-dropdown-content">
+                    <a href="error.html">אירועים בחיפה</a>
+                    <a href="error.html">להכיר את העיר</a>
+                    <a href="error.html">חברה וקהילה</a>
+                    <a href="error.html">כתבות בנושא תרבות</a>
+                    <a href="error.html">רשות הספורט</a>
+                </div>
+            </div>
+            <div class="menu-dropdown">
+                <a class="menu-link" href="error.html">העיר והעירייה</a>
+                <div class="menu-dropdown-content">
+                    <a href="error.html">לשכת ראש העיר</a>
+                    <a href="error.html">מועצת העיר</a>
+                    <a href="error.html">הנהלת העיר, קשרי חוץ ופנים</a>
+                    <a href="error.html">חדשות חיפה</a>
+                    <a href="error.html">שקיפות וחופש המידע</a>
+                </div>
+            </div>
+            <div class="menu-dropdown">
+                <a class="menu-link" href="#">עברית</a>
+                <div class="menu-dropdown-content">
+                    <a href="error2.html">العربية</a>
+                    <a href="error3.html">English</a>
+                    <a href="error4.html">Pусский</a>
+                </div>
+            </div>
+            <div id="search-bar">
+                <input type="text" id="search-input" placeholder="חפש...">
+            </div>
+        </nav>
+    </header>
+<nav id="secondary-menu">
+    <div class="menu-dropdown">
+        <a class="secondary-menu-link" href="#">צור קשר</a>
+        <div class="menu-dropdown-content">
+            <div id="contact-form">
+                <h2>צור קשר</h2>
+                <form>
+                    <div class="form-group">
+                        <label class="unselectable" for="name">שם מלא</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="unselectable" for="email">דוא"ל</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="unselectable" for="message">כתוב בקצרה</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button class="unselectable" type="submit">שלח</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="menu-dropdown">
+        <a class="secondary-menu-link" href="#">איזור אישי</a>
+        <div class="menu-dropdown-content">
+            <div id="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label class="unselectable" for="username">שם משתמש</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="unselectable" for="password">סיסמה</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button class="unselectable" type="submit">התחבר</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+        <a class="secondary-menu-link" href="gallery.html">גלריית תמונות</a>
+        <div class="menu-dropdown-content">
+</nav>
+
+k    </nav>
+    <section id="welcome-section">
+        <div id="welcome-text">
+            <h1 class="unselectable" id="welcome-title">ברוכים הבאים לאתר של עיר ללא נגישות</h1>
+            <p class="unselectable">אנחנו כאן לשירותכם</p>
+<br class="unselectable">
+            <a class="unselectable" id="read-more-button" href="#">קרא עוד</a>
+        </div>
+    </section>
+    <div id="read-more-overlay">
+        <div id="read-more-content">
+            <h2 class="unselectable">עיריית עיר ללא נגישות מתנצלת כי הכרמלית
+אינה נגישה למתקשים בניידות</h2>
+      
+            <p class="unselectable">לחץ על כפתור הסגירה לסגירת החלון.</p>
+            <div id="close-button">&times;</div>
+        </div>
+    </div>
+    <script>
+        // Read more functionality
+        const readMoreButton = document.getElementById("read-more-button");
+        const readMoreOverlay = document.getElementById("read-more-overlay");
+        const closeButton = document.getElementById("close-button");
+
+        readMoreButton.addEventListener("click", function () {
+            readMoreOverlay.style.display = "block";
+        });
+
+        closeButton.addEventListener("click", function () {
+            readMoreOverlay.style.display = "none";
+        });
+    </script>
+</body>
+</html>
